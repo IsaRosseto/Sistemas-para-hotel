@@ -1,0 +1,45 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+    background-image: url(/hotel.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+
+  .container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .box {
+    background-color: rgba(58, 57, 64, 0.527);
+    border-radius: 15px;
+    font-family: sans-serif;
+    text-align: center;
+    line-height: 1;
+   -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    height: 80%;
+    width: 80%;
+    padding: 20px 40px;
+  }
+  
+.box h1 {
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  font-size: 46px;
+
+
+}
