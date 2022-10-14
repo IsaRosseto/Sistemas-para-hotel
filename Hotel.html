@@ -115,8 +115,6 @@
 			inicio();
 		}
 
-		//////////////////////18:46 parei aq
-		//////////////////////19:30 voltei aq
 
     /// cadastrar hospedes no sistema
 		function cadastro_de_hospedes() {
@@ -140,11 +138,15 @@
 			}
 			
 
+
 			function cadastrar_hospedes() {
                 var gratuidade = 0;
-                var meia_diaria = (valor_diaria_cadastro /2);
                 var quantidade_de_hospede = 0;
+				var inteira = 0;
+				var total_hospedagem = 0;
+				var meia_diaria= 0;
                 const encerrar_cadastro = "PARE";
+
 
                 /// sobre valores
                 /// não pode valor negativo zé
@@ -156,38 +158,119 @@
 
 
                 /// cadastro 
-                var nome_hospede = (prompt("Qual o nome da(o) hóspede?"));
-
-                if (lista_hospedes.length >= 15){
-					alert("Numero máximo de hóspedes cadastrados.");
-				} else if (nome_hospede == encerrar_cadastro) {
-                    var total = valor_diaria_cadastro;
-					alert (valor_diaria_cadastro);
-                 } 
-            
-
+                var nome_hospede = (prompt("Qual o nome da(o) hóspede? Se preferir encerrar o cadastro de hóspedes escreva PARE"));
 
 
                 ///paga inteira, meia ou nada?
+				while (nome_hospede != "PARE") {     											//Quando o nome do hospede for diferente de PARE
+
                 var idade_do_hospede = (prompt("Qual a idade da(o) hóspede?"));
-                if (idade_do_hospede <= 6) {
+
+                if (idade_do_hospede <= 6) {													// Menor de 6 não paga nada 
                 alert ( nome_hospede + " cadastrado(a) com sucesso. " + nome_hospede + " possui gratuidade");
                     gratuidade++;
-                    quantidade_de_hospede++;
-                } else if (idade_do_hospede >= 60) {
+					quantidade_de_hospede++;
+					var nome_hospede = (prompt("Qual o nome da(o) hóspede? Se preferir encerrar o cadastro de hóspedes escreva PARE"));
+
+
+                } else if (idade_do_hospede >= 60) { 											// Maior de 60 só paga meia
                     alert ( nome_hospede + " cadastrado(a) com sucesso. " + nome_hospede + " O hóspede paga meia.");
                     meia_diaria++;
                     quantidade_de_hospede++;
-                } else if ( idade_do_hospede < 0 || isNaN (idade_do_hospede)) {
-                    alert ( "Insira uma idade válida")
+					total_hospedagem += valor_diaria_cadastro /2;
+					var nome_hospede = (prompt("Qual o nome da(o) hóspede? Se preferir encerrar o cadastro de hóspedes escreva PARE"));
+
+
+                } else if ( idade_do_hospede < 0 || isNaN (idade_do_hospede)) { 				// Numero invalido
+                    alert ( "Insira uma idade válida");
                     var idade_do_hospede = parseInt(prompt("Qual a idade da(o) hóspede?"));
-                } else {
+
+
+                } else { 																		// se não tem condição especial , paga inteira e continua 
                     alert ( nome_hospede + " cadastrado(a) com sucesso");
                     quantidade_de_hospede++;
-                }
+					inteira++
+					total_hospedagem += valor_diaria_cadastro
+					var nome_hospede = (prompt("Qual o nome da(o) hóspede? Se preferir encerrar o cadastro de hóspedes escreva PARE"));
 
+                }
+			}
+
+				/// Condiçoes para cadastrar mais e mais 
+                if (lista_hospedes.length >= 15){
+					alert("Numero máximo de hóspedes cadastrados.");
+				} else if (nome_hospede == encerrar_cadastro) {
+                    var total_hospedagem = (valor_diaria_cadastro) * (quantidade_de_hospede);
+					alert (nome_do_usuario + ", o total da hospedagem é : R$ " + total_hospedagem + " ; sendo " + inteira + "inteira ," + gratuidade + " gratuidade(s) e " + meia_diaria + "meia(s) ." );
+				} 
+
+				sistema_cadastrar_hospedes();
+			}
+
+
+
+		/// colocar nomes na lista
+		function inserir_hospedes() {
+			// lenght é uma propriedade que retorna a quantidade de itens dentro do array. 
+			if (lista_hospedes.length >= 15) {
+				alert("Numero máximo de hóspedes cadastrados.");
+			} else {
+				var nome_hospede = (prompt("Qual o nome da(o) hóspede? Se preferir encerrar o cadastro de hóspedes escreva PARE"));
+				// O método push() permite adicionar um item ao Array/Vetor. Importante dizer que ele adiciona o elemento ao final do Array/Vetor. 
+				lista_hospedes.push(nome_hospede);
+				console.log(lista_hospedes); // O console é usado apenas para exibir ao desenvolvedor todo mundo que já está cadastrado.
+				alert("Sucesso! Hóspede " + nome_hospede + " foi cadastrada(o) com sucesso!\n");
+			}
+			sistema_cadastrar_hospedes();
+		}
+			
+
+		///Pesquisar
+
+				function pesquisar_hospedes() {
+				alert ("Pesquisa de Cadastro")
+				var nome_hospede = prompt('Por favor, informe o nome da(o) hóspede para pesquisa:');
+				// O método includes() procura por um elemento dentro do Array e retorna verdadeiro ou falso. Caso queira comparar números, o mais indicado é o método find();
+				if (lista_hospedes.includes(nome_hospede)){
+					alert(nome_hospede + ' encontrada(o).')
+				} else {
+					alert(nome_hospede + ' não foi encontrada(o).')
+				}
+				
+			sistema_cadastrar_hospedes() 
+			}
+			
+
+			
+			function erro_pesquisar_hospedes(){
+				alert('Por favor, informe um número entre 1 e 3');
+				sistema_cadastrar_hospedes();
+			}
+			
+			sistema_cadastrar_hospedes();
+		
+
+		}
+
+		function abastecer_carros() {
+			alert('HOTEL {NOME DO HOTEL} - ABASTECER');
+			inicio();
+		}
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 4');
+			inicio();
+		}
+
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				window.close();
+			} else {
+				inicio();
 			}
 		}
+
 			
 </script>
 
