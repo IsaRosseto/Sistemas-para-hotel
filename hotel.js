@@ -205,10 +205,7 @@
 
 		}
 
-		function abastecer_carros() {
-			alert('HOTEL {NOME DO HOTEL} - ABASTECER');
-			inicio();
-		}
+		
 
 		function erro() {
 			alert('Por favor, informe um número entre 1 e 4');

@@ -252,10 +252,263 @@
 
 		}
 
-		function abastecer_carros() {
-			alert('HOTEL {NOME DO HOTEL} - ABASTECER');
-			inicio();
+		/// nova aba
+
+		function reserva_evento () {
+    alert ('Bem-vindo (a) a área de abastecimento de Reservars do Hotel' + nome_do_hotel);
+    
+    var reservaroque = parseInt(prompt('Selecione uma opção \n\n 1- Reserva de Evento \n 2- Reserva do Restaurante'));
+
+    switch (reservaroque) {
+        case 1:
+            reserva_evento()
+            break;
+        case 2:
+            reserva_restaurante()
+            break;
+        default:
+            errado()
+            break;
+    }
+
+    function reserva_evento() {
+        alert ('Bem-vindo (a) a área de eventos do hotel '+ nome_do_hotel);
+
+        var duracao = parseInt(prompt('Qual a duração do evento?'));
+
+        var custo_hora_garcom = 10.50 ;
+
+        var quantidade_de_garcom = parseInt(prompt('Quantos garçons serão necessários ?'));
+
+        var custo_1_garcom = duracao * custo_hora_garcom;
+
+        var total_garcom = custo_1_garcom * quantidade_de_garcom;
+        
+        alert ('Custo total: R$' + total_garcom);
+
+        var confirmar_reserva = confirm ('Você confirma a reserva?')
+        if (confirmar_reserva) {
+            alert (nome_do_usuario + ', reserva efetuada com sucesso!');
+        } else {
+            alert (nome_do_usuario + ', reserva não efetuada.')
+        }
+		buffet();
+	}
+    
+	function buffet () {
+            var convidados = parseInt(prompt('Qual a quantidade de conidados para o evento?'));
+            var valor_cafe = 0.80;
+            var valor_agua = 0.40;
+            var valor_salgados = 0.34;
+
+            var quantidade_de_café = convidados * 0.20;
+            var quantidade_de_agua = convidados * 0.50;
+            var quantidade_de_salgado = convidados * 7;
+
+            var custo_total = (quantidade_de_café * valor_cafe) + (quantidade_de_agua * valor_agua) + (quantidade_de_salgado* valor_salgados);
+
+
+            if(convidados > 350){
+                alert("Quantidade de convidados superior à capacidade máxima.");
+            } else{
+                alert("O evento precisará de " + quantidade_de_café + " litros de café, " + quantidade_de_agua + " litros de água, " + quantidade_de_salgado + " salgados. O custo total do evento será de R$ " + custo_total );
+            }
+
+            
+            var confirma = prompt("Gostaria de efetuar a reserva? S/N");
+
+            if (confirma == "s") {
+                alert(nome_do_usuario + " , reserva efetuada com sucesso.");
+            } else if (confirma == "n"){
+                alert(nome_do_usuario + " , reserva não efetuada");
+            }
+
+            auditorio();
+}   
+	
+		function auditorio () {
+	alert ("Hora de escolher o espaço do seu evento!");
+    var convidados = prompt("Qual o número de convidados para o seu evento?");
+    var cadeiras_extras= convidados-150 ;
+    
+
+    if (convidados > 350) {
+        alert("Quantidade de convidados superior à capacidade máxima");
+        auditorio();
+    } else if (convidados <= 350) {
+        alert("Use o auditório Colorado");
+    } else if (convidados <=150) {
+        alert("Use o auditório Laranja");
+    } else if (convidados >220) {
+        alert("Use o auditório Laranja");
+    } else if (convidados >150 && convidados<=220) {
+    alert ("Use o auditório Laranja com " + cadeiras_extras+ " cadeiras extras.");
+    } else {
+        alert( "Numero de convidados inválido");
+        auditorio();
+    }
+
+        var confirma = prompt("Gostaria de efetuar a reserva? S/N");
+
+        if (confirma == "s") {
+            alert(nome_do_usuario + " , reserva efetuada com sucesso.");
+            inicio();
+        } else if (confirma == "n"){
+            alert(nome_do_usuario + " , reserva não realizada");
+            reserva_evento();
+        }    }
+	}
+
+///////////////// nova escolha
+
+	function reserva_restaurante() {
+
+	var diasemana = prompt('Qual dia da semana vai ocorrer o seu evento?')
+
+	switch (diasemana) {
+
+	case 'segunda':
+		dia_de_semana()
+		break;
+	case 'terça':
+		dia_de_semana()
+		break;
+	case 'quarta':
+		dia_de_semana()
+		break;
+	case 'quinta':
+		dia_de_semana()
+		break;
+	case 'sexta':
+		dia_de_semana()
+		break;
+
+	case 'sabado':
+		fim_de_semana()
+		break;
+	case 'domingo':
+		fim_de_semana()
+		break;
+	default:
+		diaerrado()
+		break;
+}
+
+	function dia_de_semana() { // O restaurante em dia de semana funciona das 07:00 ás 23:00
+		var hora = parseInt(prompt('Qual a hora do seu evento?'));
+		if (hora < 7 || hora > 23) {
+		alert('Restaurante indisponível');
 		}
+		else {
+		var nome_da_empresa = prompt('Qual o nome da empresa?');
+		alert('Restaurante reservado para ' + nome_da_empresa + '. ' + diasemana + ' às ' + hora + ' horas')
+		}
+
+}
+	function fim_de_semana() { // O restaurante no final de semana funciona das 07:00 até as 15:00
+		var hora = parseInt(prompt('Qual a hora do seu evento?'));
+		if (hora < 7 || hora > 15){
+		alert('Restaurante indisponível');
+		inicio ()
+		} else {
+		var nome_da_empresa = prompt('Qual o nome da empresa?');
+		alert('Restaurante reservado para ' + nome_da_empresa + '. ' + diasemana + ' às ' + hora + ' horas');
+		}
+	}	
+	inicio()
+}
+
+//////////////////abastecer carro
+
+	function abastecer_carros () {
+	alert ('Bem-vindo (a) a área de abastecimento de carros do Hotel ' + nome_do_hotel);
+
+//posto Wayne Oil
+var alcoolWayne = parseFloat(prompt("Qual o valor do álcool no posto Wayne Oil?"));
+var gasolinaWayne = parseFloat(prompt("Qual o valor da gasolina no posto Wayne Oil?"));
+
+//posto Stark Petrol
+var alcoolStark = parseFloat(prompt("Qual o valor do álcool no posto Stark Petrol?"));
+var gasolinaStark = parseFloat(prompt("Qual o valor da gasolina no posto Stark Petrol?"));
+var diferenca = 0;
+
+// Regra de 3
+var diferenca1 = (alcoolWayne * 100) / gasolinaWayne -100;
+var diferenca2 = (alcoolStark * 100) / gasolinaStark -100;
+
+if (diferenca1 >= 30 || diferenca2 >= 30) {
+    if (diferenca1 < diferenca2) {
+    alert (nome_do_usuario + ', sai mais em conta abastecer com álcool no posto Wayne Oi');
+    } else {
+    alert (nome_do_usuario + 'sai mais em conta abastecer com álcool no posto Stark Petrol');
+    }
+	inicio();
+}
+else {
+    if (gasolinaWayne < gasolinaStark) {
+        alert (nome_do_usuario + 'é mais barato abastecer com gasolinha no posto Wayne Oil.');
+    }else {
+        alert (nome_do_usuario + 'é mais barato abastecer com gasolina no posto Stark Petrol')
+    }
+}
+inicio ();
+
+}
+
+
+/// ar condicionado
+
+function manutencao_do_arcondicionado () {
+    alert ("Bem vindo(a) a área de manuntenção de ar condicionado do Hotel " + nome_do_hotel);
+
+   
+    var empresa = prompt('Qual o nome da empresa?');
+    var valor_por_aparelho = parseInt(prompt('Qual o valor por aparelho?'));
+    var quantidade_de_aparelhos = parseInt(prompt('Qual a quantidade de aparelhos?'));
+    var porcentagem_do_desconto = parseInt(prompt('Qual a porcentagem de desconto?'));
+    var quantidade_minima_desconto = parseInt(prompt('Qual o número mínimo de aparelhos para conseguir o desconto?'));
+
+    var total_empresa = valor_por_aparelho * quantidade_de_aparelhos;
+    var aparelho_com_desconto = valor_por_aparelho - porcentagem_do_desconto
+
+    if (quantidade_de_aparelhos >= quantidade_minima_desconto) {
+        alert ("O serviço da empresa " + empresa + " custará R$ " + aparelho_com_desconto * quantidade_de_aparelhos);
+    } else {
+        alert ("O serviço da empresa " + empresa + " custará R$ " + total_empresa)
+    }
+
+    var novos_dados = confirm(nome_do_usuario+ ', deseja informar novos dados? ' );
+
+			if (novos_dados) {
+            var empresa2 = prompt('Qual o nome da empresa?');
+            var valor_por_aparelho2 = parseInt(prompt('Qual o valor por aparelho?'));
+            var quantidade_de_aparelhos2 = parseInt(prompt('Qual a quantidade de aparelhos?'));
+            var porcentagem_do_desconto2 = parseInt(prompt('Qual a porcentagem de desconto?'));
+            var quantidade_minima_desconto2 = parseInt(prompt('Qual o número mínimo de aparelhos para conseguir o desconto?'));
+
+            var total_empresa2 = valor_por_aparelho2 * quantidade_de_aparelhos2;
+            var aparelho_com_desconto2 = valor_por_aparelho2 - porcentagem_do_desconto2;
+
+    if (quantidade_de_aparelhos2 >= quantidade_minima_desconto2) {
+        alert ("O serviço da empresa " + empresa2 + " custará R$ " + aparelho_com_desconto2 * quantidade_de_aparelhos2);
+    } else {
+        alert ("O serviço da empresa " + empresa2 + " custará R$ " + total_empresa2)
+    }
+			if (total_empresa > total_empresa2) {
+				alert('O orçamento de menor valor é o ' + empresa + ' por R$' + total_empresa);
+			} else {
+				alert('O orçamento de menor valor é o ' + empresa2 + ' por R$' + total_empresa2);
+			}
+        }
+
+			inicio()
+
+		}
+
+
+
+
+
 
 		function erro() {
 			alert('Por favor, informe um número entre 1 e 4');
